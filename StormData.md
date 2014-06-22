@@ -3,7 +3,7 @@ Casualties and Economic Damages from Weather Events Across USA from 1950 to 2011
 
 Synopsis
 ========
-Weather events such as storms, flood and extreme temperature can have destructive power, but its severity varies widely.  The primary objective of data analysis is to find out which type of weather event is the most destructive in term of casualty and property damage.  The data was provided by National Weather Service, and the data spans from 1950 to 2011.  This analysis showed that Tornados cause the most casualty (fatalities and injuries) annually.  For individual event type, hurricanes cause highest average fatalities and injuries per each event type.  Last, flooding causes the highest average property damage annually.
+Weather events such as storms, flood and extreme temperature can have destructive power, but its severity varies widely.  The primary objective of data analysis is to find out which type of weather event is the most destructive in term of casualty and property damage.  The data was provided by National Weather Service, and the data spans from 1950 to 2011, but fatalities and injuries were underreported.  This analysis showed that Tornados cause the most casualty (fatalities and injuries) annually.  For individual event type, hurricanes cause highest average fatalities and injuries per each event type.  Last, flooding causes the highest average economic damage annually.
 
 Introduction
 ============
@@ -119,35 +119,54 @@ print(q)
 ![plot of chunk fig1](figure/fig1.png) 
 
 ```r
-head(sortCasualty)
+head(sortCasualty, 10)
 ```
 
 ```
 ##           EVTYPE casualty
-## 435      TORNADO   1565.2
-## 165         HEAT    653.7
-## 109        FLOOD    382.9
-## 233    LIGHTNING    318.4
-## 424 THUNDERSTORM    168.0
-## 106  FLASH FLOOD    149.3
+## 435      TORNADO  1565.21
+## 165         HEAT   653.74
+## 109        FLOOD   382.95
+## 233    LIGHTNING   318.37
+## 424 THUNDERSTORM   168.00
+## 106  FLASH FLOOD   149.32
+## 443    TSTM WIND   146.33
+## 205    ICE STORM   132.89
+## 192    HIGH WIND   119.37
+## 484     WILDFIRE    89.26
 ```
 
 ```r
-Storm[Storm$casualty == max(Storm$casualty),]  #maximal casualty by single event type
+Storm[Storm$casualty == max(Storm$casualty),1:6]  #maximal casualty by single event type
 ```
 
 ```
-##          BGN_DATE  EVTYPE FATALITIES INJURIES PROPDMG PROPDMGEXP CROPDMG
-## 157885 1979-04-10 TORNADO         42     1700     250          M       0
-##        CROPDMGEXP year casualty
-## 157885            1979     1742
+##          BGN_DATE  EVTYPE FATALITIES INJURIES PROPDMG PROPDMGEXP
+## 157885 1979-04-10 TORNADO         42     1700     250          M
 ```
 
-From the data, `tornado`, which caused average of 1565 fatalies and injuries annually from 1950 to 2011, is the most destructive.  On April 10, 1979, a tornado caused 42 fatalities and 1700 injuries, which is the most casualty from a single weather event.
+From the data, `tornado`, which caused average of 1565 fatalies and injuries annually from 1950 to 2011, is the most harmful to human health.  On April 10, 1979, a tornado caused 42 fatalities and 1700 injuries, which is the most casualty from a single weather event.  However, the figure is inaccurate.  Hurricane Katrina, on August 29, 2005, being the most destructive hurricane in the past 100 years,  claimed nearly 2000 lives, but the database reported only 15 fatalities.
+
+```r
+Storm[Storm$BGN_DATE=="2005-08-29" & Storm$EVTYPE=="HURRICANE",1:6]
+```
+
+```
+##          BGN_DATE    EVTYPE FATALITIES INJURIES PROPDMG PROPDMGEXP
+## 566200 2005-08-29 HURRICANE          0        0  400.00          K
+## 570290 2005-08-29 HURRICANE          0        0    0.00           
+## 577677 2005-08-29 HURRICANE          0        0   30.00          K
+## 577678 2005-08-29 HURRICANE          0        0    3.60          M
+## 581536 2005-08-29 HURRICANE          0        0    0.00           
+## 581537 2005-08-29 HURRICANE         15      104    5.88          B
+## 581545 2005-08-29 HURRICANE          0        0    0.00           
+## 581551 2005-08-29 HURRICANE          0        0    0.00
+```
 
 **Average Casualties from Each Weather Events**
 
-Rare weather event types such as tsunami and some "misclassified event types" are removed from analysis by eliminating the event types that have less than 50 events.  These event types may skew the casualty because they have fewer events.
+Rare weather event types such as tsunami and some "misclassified event types" are removed from analysis by eliminating the event types that have less than 50 events.  These event types may skew the casualty because they have fewer events.  The new dataset retains 99.8% of the data.
+
 
 ```r
 a <- table(Storm$EVTYPE)  #the named list of event numbers
@@ -177,7 +196,7 @@ print(q1)
 
 For individual weather events, `hurricanes` cause the most fatalities and injuries.
 
-**Annual Property Damage from Weather Events**
+**Annual Economic Damage from Weather Events**
 
 The multiplying factor for damages was determined by the following function.  Property damages are calculated by multiplying `PROPDMG` and factor determined by the function.  Crop damages are calculated by multiplying `CROPDMG` and the factor.  Combined property and crop damages are entered into a new column `dmg`. 
 

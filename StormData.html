@@ -183,7 +183,7 @@ hljs.initHighlightingOnLoad();
 
 <h1>Synopsis</h1>
 
-<p>Weather events such as storms, flood and extreme temperature can have destructive power, but its severity varies widely.  The primary objective of data analysis is to find out which type of weather event is the most destructive in term of casualty and property damage.  The data was provided by National Weather Service, and the data spans from 1950 to 2011.  This analysis showed that Tornados cause the most casualty (fatalities and injuries) annually.  For individual event type, hurricanes cause highest average fatalities and injuries per each event type.  Last, flooding causes the highest average property damage annually.</p>
+<p>Weather events such as storms, flood and extreme temperature can have destructive power, but its severity varies widely.  The primary objective of data analysis is to find out which type of weather event is the most destructive in term of casualty and property damage.  The data was provided by National Weather Service, and the data spans from 1950 to 2011, but fatalities and injuries were underreported.  This analysis showed that Tornados cause the most casualty (fatalities and injuries) annually.  For individual event type, hurricanes cause highest average fatalities and injuries per each event type.  Last, flooding causes the highest average economic damage annually.</p>
 
 <h1>Introduction</h1>
 
@@ -286,32 +286,48 @@ print(q)
 
 <p><img src="data:image/png;base64,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" alt="plot of chunk fig1"/> </p>
 
-<pre><code class="r">head(sortCasualty)
+<pre><code class="r">head(sortCasualty, 10)
 </code></pre>
 
 <pre><code>##           EVTYPE casualty
-## 435      TORNADO   1565.2
-## 165         HEAT    653.7
-## 109        FLOOD    382.9
-## 233    LIGHTNING    318.4
-## 424 THUNDERSTORM    168.0
-## 106  FLASH FLOOD    149.3
+## 435      TORNADO  1565.21
+## 165         HEAT   653.74
+## 109        FLOOD   382.95
+## 233    LIGHTNING   318.37
+## 424 THUNDERSTORM   168.00
+## 106  FLASH FLOOD   149.32
+## 443    TSTM WIND   146.33
+## 205    ICE STORM   132.89
+## 192    HIGH WIND   119.37
+## 484     WILDFIRE    89.26
 </code></pre>
 
-<pre><code class="r">Storm[Storm$casualty == max(Storm$casualty),]  #maximal casualty by single event type
+<pre><code class="r">Storm[Storm$casualty == max(Storm$casualty),1:6]  #maximal casualty by single event type
 </code></pre>
 
-<pre><code>##          BGN_DATE  EVTYPE FATALITIES INJURIES PROPDMG PROPDMGEXP CROPDMG
-## 157885 1979-04-10 TORNADO         42     1700     250          M       0
-##        CROPDMGEXP year casualty
-## 157885            1979     1742
+<pre><code>##          BGN_DATE  EVTYPE FATALITIES INJURIES PROPDMG PROPDMGEXP
+## 157885 1979-04-10 TORNADO         42     1700     250          M
 </code></pre>
 
-<p>From the data, <code>tornado</code>, which caused average of 1565 fatalies and injuries annually from 1950 to 2011, is the most destructive.  On April 10, 1979, a tornado caused 42 fatalities and 1700 injuries, which is the most casualty from a single weather event.</p>
+<p>From the data, <code>tornado</code>, which caused average of 1565 fatalies and injuries annually from 1950 to 2011, is the most harmful to human health.  On April 10, 1979, a tornado caused 42 fatalities and 1700 injuries, which is the most casualty from a single weather event.  However, the figure is inaccurate.  Hurricane Katrina, on August 29, 2005, being the most destructive hurricane in the past 100 years,  claimed nearly 2000 lives, but the database reported only 15 fatalities.</p>
+
+<pre><code class="r">Storm[Storm$BGN_DATE==&quot;2005-08-29&quot; &amp; Storm$EVTYPE==&quot;HURRICANE&quot;,1:6]
+</code></pre>
+
+<pre><code>##          BGN_DATE    EVTYPE FATALITIES INJURIES PROPDMG PROPDMGEXP
+## 566200 2005-08-29 HURRICANE          0        0  400.00          K
+## 570290 2005-08-29 HURRICANE          0        0    0.00           
+## 577677 2005-08-29 HURRICANE          0        0   30.00          K
+## 577678 2005-08-29 HURRICANE          0        0    3.60          M
+## 581536 2005-08-29 HURRICANE          0        0    0.00           
+## 581537 2005-08-29 HURRICANE         15      104    5.88          B
+## 581545 2005-08-29 HURRICANE          0        0    0.00           
+## 581551 2005-08-29 HURRICANE          0        0    0.00
+</code></pre>
 
 <p><strong>Average Casualties from Each Weather Events</strong></p>
 
-<p>Rare weather event types such as tsunami and some &ldquo;misclassified event types&rdquo; are removed from analysis by eliminating the event types that have less than 50 events.  These event types may skew the casualty because they have fewer events.</p>
+<p>Rare weather event types such as tsunami and some &ldquo;misclassified event types&rdquo; are removed from analysis by eliminating the event types that have less than 50 events.  These event types may skew the casualty because they have fewer events.  The new dataset retains 99.8% of the data.</p>
 
 <pre><code class="r">a &lt;- table(Storm$EVTYPE)  #the named list of event numbers
 n &lt;- a[a&gt;50]  #the named list of events with more than 50 events
@@ -338,7 +354,7 @@ print(q1)
 
 <p>For individual weather events, <code>hurricanes</code> cause the most fatalities and injuries.</p>
 
-<p><strong>Annual Property Damage from Weather Events</strong></p>
+<p><strong>Annual Economic Damage from Weather Events</strong></p>
 
 <p>The multiplying factor for damages was determined by the following function.  Property damages are calculated by multiplying <code>PROPDMG</code> and factor determined by the function.  Crop damages are calculated by multiplying <code>CROPDMG</code> and the factor.  Combined property and crop damages are entered into a new column <code>dmg</code>. </p>
 
